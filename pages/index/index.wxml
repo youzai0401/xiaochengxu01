@@ -9,5 +9,9 @@
   </view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
+    <map></map>
+    <p bindtap="bindwxscal">吊起微信扫一扫</p>
+    <p bindtap="bindwxgetuserlocal">获取用户位置</p>
+    <p>{{scanCodeRes}}{{scanCodeResMessage}}</p>
   </view>
 </view>

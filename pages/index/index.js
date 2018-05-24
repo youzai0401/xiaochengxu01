@@ -7,13 +7,41 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    scanCodeRes: {},
+    scanCodeResMessage: '暂时未获取'
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  bindwxscal: function() {
+    wx.scanCode({
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          scanCodeRes: res.result,
+          scanCodeResMessage: '获取成功'
+        })
+      }
+    })
+  },
+  bindwxgetuserlocal: function () {
+    wx.getLocation({
+      type: 'wgs84',
+      success: (res) => {
+        var latitude = res.latitude // 经度
+        var longitude = res.longitude // 纬度
+        console.log(res);
+      }
+    }),
+      wx.vibrateLong({
+      success: () => {
+        console.log('success');
+      }
+      })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
